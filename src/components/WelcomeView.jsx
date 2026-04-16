@@ -17,8 +17,8 @@ export default function({scrollToBottom, sendMessage, setInputBarText, inputBarT
             {/* HERO SECTION */}
             <View style={styles.hero}>
                 <Image 
-                    source={{ uri:'../assets/salon.jpg' }}
-                    style={styles.heroImage}
+                    source={require('../assets/salon.jpg')}
+                    style={{ width: '100%', height: 300 }}
                     resizeMode="cover"
                 />
                 <Text style={styles.title}>Glow Salon ✨</Text>
