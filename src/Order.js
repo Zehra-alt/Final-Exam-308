@@ -10,23 +10,44 @@ export function clearInput(){
 
 function welcoming() {
   let aReturn = [];
-  currentState = reserving;
-  aReturn.push("Welcome to Rich's Acton Rapid Test.");
-  aReturn.push("Would you like to reserve a rapid test kit?");
+  currentState = choosingService;
+  aReturn.push("Welcome to Glow Salon ✨");
+  aReturn.push("What service are you looking for today?");
   return aReturn;
 }
 
-function reserving(sInput) {
+function choosingService(sInput) {
   let aReturn = [];
-  currentState = welcoming
-  if (sInput.toLowerCase().startsWith('y')) {
-    aReturn.push(`Your rapid test is reserved`);
-    let d = new Date();
-    d.setMinutes(d.getMinutes() + 120);
-    aReturn.push(`Please pick it up at 123 Tidy St., Acton before ${d.toTimeString()}`);
-  } else {
-    aReturn.push("Thanks for trying our reservation system");
-    aReturn.push("Maybe next time");
+
+  if (sInput.toLowerCase().includes("buzz")) {
+    currentState = upsell;
+    aReturn.push("Great choice! A Buzz Cut is quick and clean.");
+    aReturn.push("Would you like to add a shampoo treatment?");
+  } 
+  else if (sInput.toLowerCase().includes("regular")) {
+    currentState = upsell;
+    aReturn.push("Nice! A Regular Cut will give you a fresh look.");
+    aReturn.push("Would you like to add a conditioning treatment?");
+  } 
+  else {
+    aReturn.push("We offer Buzz Cut or Regular Cut.");
+    aReturn.push("Which one would you like?");
   }
+
+  return aReturn;
+}
+
+function upsell(sInput) {
+  let aReturn = [];
+  currentState = welcoming;
+
+  if (sInput.toLowerCase().startsWith('y')) {
+    aReturn.push("Perfect! We've added that to your service 💇‍♀️");
+    aReturn.push("You're all set. See you soon!");
+  } else {
+    aReturn.push("No worries! Your booking is confirmed without extras.");
+    aReturn.push("See you at Glow Salon ✨");
+  }
+
   return aReturn;
 }
